@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
+//using UnityEngine.Animations; //POR AHORA LO DEJO COMENTADO XD
+
+[RequireComponent(typeof(Rigidbody))] //esto añade directamente un rigidbody sin nececidad de añadirlo en editor
 public class PlayerController2 : MonoBehaviour
 {
+    [TextArea(1, 8)]
+    [SerializeField] private string Notas;
+
     [Header("Movimiento")]
 
-    [SerializeField] private Rigidbody _rb;
     [SerializeField] private float _speed;
     [SerializeField] private float _runSpeed;
     [SerializeField] private float _movementSpeed;
@@ -14,24 +18,21 @@ public class PlayerController2 : MonoBehaviour
     [SerializeField] private float _jumpForce;
     public bool isGrounded;
 
-    [Header("animaciones")]
-    [SerializeField] private Animator _animator;
-
-
-
-
+    [SerializeField] private Transform _model;
+    [SerializeField] private float _rotationSpeed = 15;
+    private Animator _animator;
+    private Rigidbody _rb;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        //InitializeComponents();
+        InitializeComponents(); //por ahora voy a llamar a esto porque sino el player no salta xd
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         Movement();
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
@@ -43,8 +44,9 @@ public class PlayerController2 : MonoBehaviour
     public void InitializeComponents()
     {
         _rb = GetComponent<Rigidbody>();
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>(); //Como esto estaría solo en el modelo, accedemos a él mediante el hijo
     }
+
     public void Movement()
     {
         //controlamos si corre o camina
@@ -65,7 +67,10 @@ public class PlayerController2 : MonoBehaviour
 
         transform.Translate(_currentMovementDir * _movementSpeed * Time.deltaTime);
 
-
+        if (_currentMovementDir != Vector3.zero)
+        {
+            _model.forward = Vector3.Slerp(_model.forward, _currentMovementDir, Time.deltaTime * _rotationSpeed); //rotación del modelo
+        }
     }
 
     public void Jump()

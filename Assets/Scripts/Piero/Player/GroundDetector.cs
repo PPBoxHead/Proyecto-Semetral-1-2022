@@ -5,7 +5,12 @@ using UnityEngine;
 public class GroundDetector : MonoBehaviour
 {
 
-    [SerializeField] private BoxCollider _gCollider;
+    private CapsuleCollider _collider;
+
+    private void Awake() 
+    {
+        _collider = GetComponent<CapsuleCollider>(); //Esto se puede cambiar
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,11 +29,5 @@ public class GroundDetector : MonoBehaviour
             Debug.Log("salio Suelo");
         }
     }
-
-
-
-
-
-
 
 }
