@@ -1,17 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-
+    [Header("Texto Info")]
     [SerializeField] private TextMeshProUGUI infoText;
-
-
-
-
-
+    [SerializeField] private Image infoTextPanel;
+   
 
 
     public void LoadText(string actualtext)
@@ -21,11 +19,11 @@ public class UIManager : MonoBehaviour
 
     public void ExitText()
     {
-        infoText.gameObject.SetActive(false);
+        infoTextPanel.gameObject.SetActive(false);
     }
 
     public void OpenText()
     {
-        infoText.gameObject.SetActive(true);
+        infoTextPanel.gameObject.SetActive(true);
     }
 }

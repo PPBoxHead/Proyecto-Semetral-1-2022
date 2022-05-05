@@ -22,6 +22,10 @@ public class PlayerController2 : MonoBehaviour
     private bool _normalDir = true;
     private Vector3 lastPlaceGround = Vector3.zero;
 
+    [Header("Interactuar")]
+    [SerializeField] private bool _interacting = false;
+
+
     [SerializeField] private Transform _model;
     [SerializeField] private float _rotationSpeed = 15;
     private Animator _animator;
@@ -38,8 +42,11 @@ public class PlayerController2 : MonoBehaviour
     void Update()
     {
 
-
-        Movement();
+        if(!_interacting)
+        {
+            Movement();
+        }
+        
 
 
         if(isGrounded)
@@ -111,6 +118,11 @@ public class PlayerController2 : MonoBehaviour
     public void MoveTo(Vector3 newPosition)
     {
         transform.position = new Vector3(newPosition.x, transform.position.y,newPosition.z);
+    }
+
+    public void Interact()
+    {
+        _interacting = !_interacting;
     }
 
 }
