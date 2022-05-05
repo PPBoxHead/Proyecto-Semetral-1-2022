@@ -11,12 +11,15 @@ public class PlayerController2 : MonoBehaviour
 
     [Header("Movimiento")]
 
+    [SerializeField] private float _horizontal;
+    [SerializeField] private float _vertical;
     [SerializeField] private float _speed;
     [SerializeField] private float _runSpeed;
     [SerializeField] private float _movementSpeed;
     [SerializeField] private Vector3 _currentMovementDir;
     [SerializeField] private float _jumpForce;
     public bool isGrounded;
+    private bool _normalDir = true;
 
     [SerializeField] private Transform _model;
     [SerializeField] private float _rotationSpeed = 15;
@@ -60,10 +63,17 @@ public class PlayerController2 : MonoBehaviour
         }
 
         //cargamos la direccion en la que se mueve el jugador
-        float Horizontal = Input.GetAxisRaw("Horizontal");
-        float Vertical = Input.GetAxisRaw("Vertical");
+        _horizontal = Input.GetAxisRaw("Horizontal");
+        _vertical = Input.GetAxisRaw("Vertical");
 
-        _currentMovementDir = new Vector3(0, 0, Horizontal);
+        if(_normalDir)
+        {
+            _currentMovementDir = new Vector3(0, 0, _horizontal);
+        }
+        else
+        {
+            _currentMovementDir = new Vector3(-_horizontal, 0,0);
+        }
 
         transform.Translate(_currentMovementDir * _movementSpeed * Time.deltaTime);
 
@@ -77,5 +87,11 @@ public class PlayerController2 : MonoBehaviour
     {
         _rb.AddForce(new Vector3(0, _jumpForce, 0), ForceMode.Impulse);
     }
-   
+
+    public void ChangeDirection()
+    {
+        _normalDir = !_normalDir;
+
+    }
+
 }

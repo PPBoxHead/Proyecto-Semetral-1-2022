@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [Header("Components")]
     [SerializeField] private PlayerController2 _playerController;
     [SerializeField] private Camera _camera;
-
+    [SerializeField] private UIManager _uiManager;
 
 
 
@@ -44,6 +44,10 @@ public class GameManager : MonoBehaviour
         get { return _playerController; }
     }
 
+    public UIManager GetUIManager
+    {
+        get { return _uiManager; }
+    }
     public Camera GetCamera
     {
         get { return _camera; }
