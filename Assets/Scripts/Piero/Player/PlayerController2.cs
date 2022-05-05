@@ -19,6 +19,7 @@ public class PlayerController2 : MonoBehaviour
     [SerializeField] private Vector3 _currentMovementDir;
     [SerializeField] private float _jumpForce;
     public bool isGrounded;
+    private bool _onWood = false;
     private bool _normalDir = true;
     private Vector3 lastPlaceGround = Vector3.zero;
 
@@ -60,6 +61,23 @@ public class PlayerController2 : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Wood"))
+        {
+            _onWood = true;
+            _rb.useGravity = false;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Wood"))
+        {
+            _onWood = false;
+            _rb.useGravity = true;
+        }
+    }
     public void InitializeComponents()
     {
         _rb = GetComponent<Rigidbody>();
@@ -84,11 +102,28 @@ public class PlayerController2 : MonoBehaviour
 
         if(_normalDir)
         {
-            _currentMovementDir = new Vector3(0, 0, _horizontal);
+            if(!_onWood)
+            {
+                _currentMovementDir = new Vector3(0, 0, _horizontal);
+            }
+            else
+            {
+                _currentMovementDir = new Vector3(0, _vertical, _horizontal);
+            }    
+            
         }
         else
         {
-            _currentMovementDir = new Vector3(-_horizontal, 0,0);
+
+            if (!_onWood)
+            {
+                _currentMovementDir = new Vector3(-_horizontal, _vertical, 0);
+            }
+            else
+            {
+                _currentMovementDir = new Vector3(-_horizontal, _vertical, 0);
+            }
+            
         }
 
         transform.Translate(_currentMovementDir * _movementSpeed * Time.deltaTime);
