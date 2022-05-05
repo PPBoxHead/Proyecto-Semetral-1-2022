@@ -9,6 +9,7 @@ public class TriggerSentidoMov : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             GameManager.GetInstance.GetPlayerController.ChangeDirection();
+            GameManager.GetInstance.GetPlayerController.MoveTo(transform.position);
         }
     }
 }

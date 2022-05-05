@@ -20,6 +20,7 @@ public class PlayerController2 : MonoBehaviour
     [SerializeField] private float _jumpForce;
     public bool isGrounded;
     private bool _normalDir = true;
+    private Vector3 lastPlaceGround = Vector3.zero;
 
     [SerializeField] private Transform _model;
     [SerializeField] private float _rotationSpeed = 15;
@@ -36,7 +37,15 @@ public class PlayerController2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         Movement();
+
+
+        if(isGrounded)
+        {
+            lastPlaceGround = transform.position;
+        }
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
@@ -92,6 +101,16 @@ public class PlayerController2 : MonoBehaviour
     {
         _normalDir = !_normalDir;
 
+    }
+
+    public void MoveToLPG()
+    {
+        transform.position = lastPlaceGround + new Vector3(0,1,0);
+    }
+
+    public void MoveTo(Vector3 newPosition)
+    {
+        transform.position = new Vector3(newPosition.x, transform.position.y,newPosition.z);
     }
 
 }
