@@ -23,7 +23,7 @@ public class PlayerController2 : MonoBehaviour
     private Vector3 lastPlaceGround = Vector3.zero;
 
     [Header("Interactuar")]
-    [SerializeField] private bool _interacting = false;
+    public bool _interacting = false;
 
 
     [SerializeField] private Transform _model;
