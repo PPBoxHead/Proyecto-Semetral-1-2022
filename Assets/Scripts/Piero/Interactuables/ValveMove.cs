@@ -9,6 +9,7 @@ public class ValveMove : MonoBehaviour
     [SerializeField] private Transform[] locations;
     [SerializeField] private Material[] _materials;
     [SerializeField] private MeshRenderer _selfMesh;
+    [SerializeField] private float _detectDistance;
 
     private void Update()
     {
@@ -23,11 +24,8 @@ public class ValveMove : MonoBehaviour
                 platform.position = Vector3.MoveTowards(platform.transform.position, locations[1].position, moveSpeed * Time.deltaTime);
             }
         }
-    }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        if(Vector3.Distance(transform.position,GameManager.GetInstance.GetPlayerController.ptransform) < _detectDistance)
         {
             _selfMesh.material = _materials[1];
 
@@ -36,15 +34,14 @@ public class ValveMove : MonoBehaviour
                 GameManager.GetInstance.GetPlayerController.Interact();
             }
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        else
         {
             _selfMesh.material = _materials[0];
         }
+    }
 
-            
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawSphere(transform.position,_detectDistance);
     }
 }

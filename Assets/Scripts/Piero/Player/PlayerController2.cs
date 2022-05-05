@@ -9,6 +9,10 @@ public class PlayerController2 : MonoBehaviour
     [TextArea(1, 8)]
     [SerializeField] private string Notas;
 
+
+    //datos publicos generales
+    public Vector3 ptransform;
+
     [Header("Movimiento")]
 
     [SerializeField] private float _horizontal;
@@ -47,8 +51,8 @@ public class PlayerController2 : MonoBehaviour
         {
             Movement();
         }
-        
 
+        ptransform = transform.position;
 
         if(isGrounded)
         {
