@@ -27,7 +27,8 @@ public class ValveRotation : MonoBehaviour
             {
                 if(platform.rotation.x <= _maxRot)
                 {
-                    platform.eulerAngles += new Vector3(_rotateSpeed * Time.deltaTime , 0f, 0f);
+                    Debug.Log("rota d");
+                    platform.eulerAngles -= new Vector3(-_rotateSpeed * Time.deltaTime , 0f, 0f);
                 }
                 
             }

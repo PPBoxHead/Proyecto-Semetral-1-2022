@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
@@ -11,6 +11,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private UIManager _uiManager;
 
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            ResetScene();
+        }
+    }
 
 
     private void Awake()
@@ -51,5 +59,11 @@ public class GameManager : MonoBehaviour
     public Camera GetCamera
     {
         get { return _camera; }
+    }
+
+
+    public void ResetScene()
+    {
+        SceneManager.LoadScene("PruebasPiero");
     }
 }
