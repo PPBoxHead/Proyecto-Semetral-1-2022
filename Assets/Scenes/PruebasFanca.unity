@@ -418,6 +418,7 @@ GameObject:
   - component: {fileID: 83935859}
   - component: {fileID: 83935863}
   - component: {fileID: 83935862}
+  - component: {fileID: 83935864}
   m_Layer: 0
   m_Name: Lever Left
   m_TagString: Untagged
@@ -460,7 +461,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d920ebfd974889a4b868fef28d8ffb6e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -490,6 +491,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83935858}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &83935864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83935858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7edaf0f93a8a74eafa564252050b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Lever: {fileID: 1463971481}
+  material:
+  - {fileID: 2100000, guid: d920ebfd974889a4b868fef28d8ffb6e, type: 2}
+  - {fileID: 2100000, guid: 8eab9d06fa0bed84692bbdd6d584b563, type: 2}
 --- !u!1 &109093684
 GameObject:
   m_ObjectHideFlags: 0
@@ -3244,6 +3261,7 @@ GameObject:
   - component: {fileID: 830704789}
   - component: {fileID: 830704791}
   - component: {fileID: 830704790}
+  - component: {fileID: 830704792}
   m_Layer: 0
   m_Name: Lever Right
   m_TagString: Untagged
@@ -3286,7 +3304,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d920ebfd974889a4b868fef28d8ffb6e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3316,6 +3334,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830704788}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &830704792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830704788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7edaf0f93a8a74eafa564252050b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Lever: {fileID: 1463971481}
+  material:
+  - {fileID: 2100000, guid: d920ebfd974889a4b868fef28d8ffb6e, type: 2}
+  - {fileID: 2100000, guid: 8eab9d06fa0bed84692bbdd6d584b563, type: 2}
 --- !u!1 &847012809
 GameObject:
   m_ObjectHideFlags: 0
@@ -5261,7 +5295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6d39d4c58893b468fd654da0c29c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotateSpeed: 50
+  _rotateDuration: 0
   platform: {fileID: 940436411}
   _maxRot: 0
   _minRot: -50
@@ -5270,6 +5304,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 8eab9d06fa0bed84692bbdd6d584b563, type: 2}
   _selfMesh: {fileID: 1268516043}
   _detectDistance: 1.88
+  isRot: 0
 --- !u!1 &1276368314
 GameObject:
   m_ObjectHideFlags: 0
@@ -6079,6 +6114,7 @@ GameObject:
   - component: {fileID: 1463971483}
   - component: {fileID: 1463971486}
   - component: {fileID: 1463971485}
+  - component: {fileID: 1463971487}
   m_Layer: 0
   m_Name: Lever Engine
   m_TagString: Untagged
@@ -6123,7 +6159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d920ebfd974889a4b868fef28d8ffb6e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6180,6 +6216,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeverActivation: 0
   LeverCancel: 0
+--- !u!114 &1463971487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463971481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7edaf0f93a8a74eafa564252050b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Lever: {fileID: 1463971481}
+  material:
+  - {fileID: 2100000, guid: d920ebfd974889a4b868fef28d8ffb6e, type: 2}
+  - {fileID: 2100000, guid: 8eab9d06fa0bed84692bbdd6d584b563, type: 2}
 --- !u!1 &1467757961
 GameObject:
   m_ObjectHideFlags: 0

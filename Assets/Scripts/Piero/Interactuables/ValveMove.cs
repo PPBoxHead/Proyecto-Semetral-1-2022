@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ValveMove : MonoBehaviour
 {
+    
     [SerializeField] private float moveSpeed;
     [SerializeField] private Transform platform;
     [SerializeField] private Transform[] locations;
