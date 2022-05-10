@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class ValveRotation : MonoBehaviour
 {
 
-    [SerializeField] private float _rotateSpeed;
+    [SerializeField] private float _rotateDuration;
     [SerializeField] private Transform platform;
     [SerializeField] private float _maxRot, _minRot;
     [SerializeField] private Material[] _materials;
     [SerializeField] private MeshRenderer _selfMesh;
     [SerializeField] private float _detectDistance;
+
+    [SerializeField] private bool isRot = false;
 
     private void Update()
     {
@@ -18,19 +21,23 @@ public class ValveRotation : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.A))
             {
-                if (platform.rotation.x >= _minRot)
-                {
-                    platform.eulerAngles += new Vector3(-_rotateSpeed * Time.deltaTime, 0f, 0f);
-                }
+                RotatePlatform(true);
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                if(platform.rotation.x <= _maxRot)
-                {
-                    Debug.Log("rota d");
-                    platform.eulerAngles -= new Vector3(-_rotateSpeed * Time.deltaTime , 0f, 0f);
-                }
+                RotatePlatform(false);
                 
+            }
+            
+            if(Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+            {
+                platform.DOPause();
+                isRot = false;
+            }
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+            {
+                platform.DOPlay();
+                isRot = true;
             }
         }
 
@@ -49,6 +56,30 @@ public class ValveRotation : MonoBehaviour
         }
     }
 
+    public void RotatePlatform(bool rotateLeft = true)
+    {
+        if (isRot) return;
+
+        Vector3 rot = Vector3.zero;
+
+        Debug.Log("entra a rotate");
+
+        isRot = true;
+
+        if(rotateLeft)
+        {
+            rot.x = _minRot;
+        }
+        else
+        {
+            rot.x = _maxRot;
+        }
+        
+
+        platform.DORotate(rot, _rotateDuration).OnComplete(() => { isRot = false; });
+            
+
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawSphere(transform.position, _detectDistance);
