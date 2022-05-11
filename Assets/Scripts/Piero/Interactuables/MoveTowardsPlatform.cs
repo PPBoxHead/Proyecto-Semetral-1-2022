@@ -11,7 +11,7 @@ public class MoveTowardsPlatform : MonoBehaviour
     private Vector3 _initialPosition;
     [SerializeField] private bool _back = false;
     [SerializeField] private bool _isMoving = false;
-    //private Transform _playerTransform;
+    [SerializeField] private Transform _playerTransform;
     private void Awake()
     {
         leverMove = Lever.GetComponent<LeverMove>();
@@ -45,15 +45,15 @@ public class MoveTowardsPlatform : MonoBehaviour
         }
 
     }
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //if (!other.CompareTag("Player")) return;
-    //_playerTransform.SetParent(transform);
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Player")) return;
+        _playerTransform.SetParent(transform);
+    }
 
-    //private void OnTriggerExit(Collider other)
-    //{
-    //if (!other.CompareTag("Player")) return;
-    //_playerTransform.SetParent(null);
-    //}
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag("Player")) return;
+        _playerTransform.SetParent(null);
+    }
 }

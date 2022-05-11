@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6054,6 +6054,7 @@ GameObject:
   - component: {fileID: 1429063744}
   - component: {fileID: 1429063743}
   - component: {fileID: 1429063746}
+  - component: {fileID: 1429063747}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Ground
@@ -6156,6 +6157,20 @@ MonoBehaviour:
   _speed: 10
   _back: 0
   _isMoving: 0
+  _playerTransform: {fileID: 2051516230}
+--- !u!65 &1429063747
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429063741}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.28, z: 0}
 --- !u!1 &1438116109
 GameObject:
   m_ObjectHideFlags: 0
