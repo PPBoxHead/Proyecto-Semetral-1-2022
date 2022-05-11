@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class LeverRotation : MonoBehaviour
 {
-    public GameObject DisplayLeverLeft;
-    public GameObject DisplayLeverRight;
     public GameObject Lever;
     LeverMove leverMove;
     [SerializeField] float _rotationAmount = 90f;
     [SerializeField] float _rotationSpeed = 30;
     [SerializeField] bool _isRotated = true;
-    [SerializeField] bool _leftLever = true;
 
     private bool _isRotating;
     private float _currentRotationAmount;
@@ -26,20 +23,7 @@ public class LeverRotation : MonoBehaviour
     {
         if (leverMove.LeverActivation == true && Input.GetKeyDown(KeyCode.E))
         {
-            TriggerRotation();
-            if (_leftLever == true)
-            {
-                DisplayLeverLeft.SetActive(false);
-                DisplayLeverRight.SetActive(true);
-                _leftLever = false;
-            }
-            else if (_leftLever == false)
-            {
-                DisplayLeverRight.SetActive(false);
-                DisplayLeverLeft.SetActive(true);
-                _leftLever = true;
-            }
-            
+            TriggerRotation();           
         }
 
         if (!_isRotating)

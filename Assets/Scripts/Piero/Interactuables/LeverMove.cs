@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class LeverMove : MonoBehaviour
 {
+    public GameObject DisplayLeverLeft;
+    public GameObject DisplayLeverRight;
     public bool LeverActivation = false;
-    [SerializeField] bool LeverCancel = false;
+    private bool _leverCancel = false;
+    [SerializeField] float _cooldown;
+    [SerializeField] bool _leftLever = true;
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player" && LeverCancel == false)
+        if (other.gameObject.tag == "Player" && _leverCancel == false)
         {
             LeverActivation = true;
         }
-        else if (other.gameObject.tag == "Player" && LeverCancel == true)
+        else if (other.gameObject.tag == "Player" && _leverCancel == true)
         {
             LeverActivation = false;
         }
@@ -21,13 +25,25 @@ public class LeverMove : MonoBehaviour
     {
         if (LeverActivation == true && Input.GetKeyDown(KeyCode.E))
         {
-            LeverCancel = true;
-            Invoke("SetBoolTrue", 3f);
+            if (_leftLever == true)
+            {
+                DisplayLeverLeft.SetActive(false);
+                DisplayLeverRight.SetActive(true);
+                _leftLever = false;
+            }
+            else if (_leftLever == false)
+            {
+                DisplayLeverRight.SetActive(false);
+                DisplayLeverLeft.SetActive(true);
+                _leftLever = true;
+            }
+            _leverCancel = true;
+            Invoke("SetBoolTrue", _cooldown);
         }
     }
     private void SetBoolTrue()
     {
-        LeverCancel = false;
+        _leverCancel = false;
     }
 
     private void OnTriggerExit(Collider other)
