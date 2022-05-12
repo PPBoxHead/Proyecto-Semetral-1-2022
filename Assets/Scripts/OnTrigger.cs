@@ -6,9 +6,11 @@ public class OnTrigger : MonoBehaviour
     public UnityEvent onTriggerEnter;
     public UnityEvent onTriggerExit;
     [SerializeField] private string otherTag = "Player";
-
+    public bool activado;
     void OnTriggerEnter(Collider other)
     {
+        if (!activado) return;
+
         if (other.gameObject.CompareTag(otherTag))
         {
             onTriggerEnter?.Invoke();
@@ -17,6 +19,8 @@ public class OnTrigger : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        if (!activado) return;
+
         if (other.gameObject.CompareTag(otherTag))
         {
             onTriggerExit?.Invoke();
