@@ -36,6 +36,9 @@ public class PlayerController2 : MonoBehaviour
     private Animator _animator;
     private Rigidbody _rb;
 
+    [SerializeField] private CapsuleCollider _defaultCollider;
+    [SerializeField] private BoxCollider _crounchCollider;
+
 
     // Start is called before the first frame update
     void Awake()
