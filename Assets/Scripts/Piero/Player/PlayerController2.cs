@@ -23,6 +23,7 @@ public class PlayerController2 : MonoBehaviour
     [SerializeField] private Vector3 _currentMovementDir;
     [SerializeField] private float _jumpForce;
     public bool isGrounded;
+    private bool _isCrounch;
     private bool _onWood = false;
     private bool _normalDir = true;
     private Vector3 lastPlaceGround = Vector3.zero;
@@ -37,7 +38,7 @@ public class PlayerController2 : MonoBehaviour
     private Rigidbody _rb;
 
     [SerializeField] private CapsuleCollider _defaultCollider;
-    [SerializeField] private BoxCollider _crounchCollider;
+    [SerializeField] private CapsuleCollider _crounchCollider;
 
 
     // Start is called before the first frame update
@@ -49,6 +50,20 @@ public class PlayerController2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.LeftControl)) 
+        {
+            _defaultCollider.enabled = false;
+            _crounchCollider.enabled = true;
+            _isCrounch = true;
+        }
+        else 
+        {
+            _defaultCollider.enabled = true;
+            _crounchCollider.enabled = false;
+            _isCrounch = false;
+
+        }
+
 
         if(!_interacting)
         {
