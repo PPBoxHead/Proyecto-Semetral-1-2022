@@ -7,6 +7,7 @@ public class OnTrigger : MonoBehaviour
     public UnityEvent onTriggerExit;
     [SerializeField] private string otherTag = "Player";
     public bool activado;
+    
     void OnTriggerEnter(Collider other)
     {
         if (!activado) return;

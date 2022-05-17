@@ -81,6 +81,8 @@ public class PlayerController2 : MonoBehaviour
         {
             Jump();
         }
+        if (Input.GetKey(KeyCode.Escape))
+            Application.Quit();
     }
 
     private void OnTriggerEnter(Collider other)
